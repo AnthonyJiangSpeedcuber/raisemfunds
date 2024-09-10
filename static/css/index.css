@@ -1,0 +1,20 @@
+.liberty{
+    background-image:url("/static/imgs/liberty-bg.webp");
+    background-position:center;
+    background-size:cover;
+    height: 100%;
+    text-align: center;
+}
+h1{
+    font:Roboto Slab;
+    font-size: 75px;
+    font-weight: bold;
+}
+.libertytext{
+    position:absolute;
+    top: 50%;
+    left: 73%;
+    color: white;
+    transform: translate(-50%,-50%);
+
+}
