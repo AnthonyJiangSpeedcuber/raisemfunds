@@ -7,14 +7,24 @@
 }
 h1{
     font:Roboto Slab;
-    font-size: 75px;
+    font-size: 150px;
     font-weight: bold;
 }
 .libertytext{
     position:absolute;
-    top: 50%;
+    top: 35%;
     left: 73%;
     color: white;
     transform: translate(-50%,-50%);
 
+}
+.libertytext p{
+    font-size: 35px;
+    font-weight: bold;
+    margin-top: -100px;
+    white-space: nowrap;
+}
+
+.bigbutton{
+    
 }
