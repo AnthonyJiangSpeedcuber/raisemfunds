@@ -13,7 +13,7 @@ h1{
 .libertytext{
     position:absolute;
     top: 35%;
-    left: 73%;
+    left: 65%;
     color: white;
     transform: translate(-50%,-50%);
 
@@ -26,5 +26,10 @@ h1{
 }
 
 .bigbutton{
-    
+    color: white;
+    background: red;
+    padding-right: 40px;
+    padding-left: 40px;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
