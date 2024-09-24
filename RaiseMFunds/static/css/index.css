@@ -23,13 +23,18 @@ h1{
     font-weight: bold;
     margin-top: -100px;
     white-space: nowrap;
+    margin-bottom: 100px;
 }
 
 .bigbutton{
     color: white;
     background: red;
-    padding-right: 40px;
-    padding-left: 40px;
-    padding-top: 20px;
-    padding-bottom: 20px;
+    padding-right: 100px;
+    padding-left: 100px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    font-size: 40px;
+    border-radius: 1000000000000px;
+    text-decoration: none;
+    font-weight: bold;
 }
