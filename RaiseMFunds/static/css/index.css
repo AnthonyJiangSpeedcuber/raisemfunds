@@ -1,40 +1,65 @@
-.liberty{
-    background-image:url("/static/imgs/liberty-bg.webp");
-    background-position:center;
-    background-size:cover;
+body, html {
+    margin: 0;
+    padding: 0;
     height: 100%;
-    text-align: center;
 }
-h1{
-    font:Roboto Slab;
+
+.liberty {
+    background-image: url("/static/imgs/liberty-bg.webp");
+    background-position: center;
+    background-size: cover;
+    height: 100vh;
+    text-align: center;
+    position: relative;
+}
+
+h1 {
+    font-family: 'Roboto Slab', serif;
     font-size: 150px;
     font-weight: bold;
+    margin: 0;
 }
-.libertytext{
-    position:absolute;
-    top: 35%;
+
+.libertytext {
+    position: absolute;
+    top: 50%;
     left: 65%;
     color: white;
-    transform: translate(-50%,-50%);
-
+    transform: translate(-50%, -50%);
 }
-.libertytext p{
-    font-size: 35px;
+
+.libertytext p {
+    font-size: 30px;
     font-weight: bold;
-    margin-top: -100px;
+    margin-top: 20px;
     white-space: nowrap;
-    margin-bottom: 100px;
+    margin-bottom: 40px;
 }
 
-.bigbutton{
+.bigbutton {
     color: white;
     background: red;
-    padding-right: 100px;
-    padding-left: 100px;
-    padding-top: 30px;
-    padding-bottom: 30px;
+    padding: 30px 100px;
     font-size: 40px;
-    border-radius: 1000000000000px;
+    border-radius: 10px;
     text-decoration: none;
     font-weight: bold;
+    display: inline-block;
+}
+
+.mainbody {
+    text-align: center; 
+    color: white;
+    background: #152283;
+    padding: 20% 0;
+    font-size: 30px;
+    text-wrap: pretty;
+    padding-left: 20%;
+    padding-right: 20%;
+
+}
+
+.remove {
+    display: flex;
+    flex-direction: column;
 }
