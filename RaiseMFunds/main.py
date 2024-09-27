@@ -51,8 +51,9 @@ app = Flask('app')
 @app.route('/')
 def home():
     return render_template('index.html')
-
-
+@app.route('/login')
+def Susan():
+    return render_template('login.html')
 app.run()
 
 

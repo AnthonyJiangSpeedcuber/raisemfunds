@@ -51,15 +51,22 @@ h1 {
     text-align: center; 
     color: white;
     background: #152283;
-    padding: 20% 0;
+    padding: 5% 0;
     font-size: 30px;
     text-wrap: pretty;
     padding-left: 20%;
     padding-right: 20%;
-
+    padding-bottom: 25%;
 }
 
 .remove {
     display: flex;
     flex-direction: column;
+}
+
+.Susan {
+    text-align: center;
+    background-color: grey;
+    padding-bottom: 30%;
+    
 }
