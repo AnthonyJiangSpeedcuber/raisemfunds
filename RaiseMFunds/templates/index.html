@@ -1,46 +1,34 @@
-<!DOCTYPE html>
-<html lang="en">
-   <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/index.css') }}">
-      <title>RaiseMFunds</title>
-   </head>
-   <body>
-      <div class="remove">
-         <div class="liberty">
-            <div class="libertytext">
-               <h1>RaiseMFunds</h1>
-               <p>Our mission is to help immigrants achieve the American Dream!</p>
-               <a href="#" class="bigbutton">READ MORE</a>
-            </div>
-         </div>
-         <div class="mainbody">
-            <h2>Some Stories</h2>
-            <p>
-               <i>Jed is an immigrant from China. He came to the United States in 2022 and is looking forward to building a life here. He was finally reunited with his parents and sisters this summer.</i>
-            </p>
-            <p>
-               
-               Jed L
-            </p>
-            <p>
-               <i>Lorem ipsum odor amet, consectetuer adipiscing elit. Tincidunt elementum bibendum ultricies facilisis nisi platea varius per? Magna ex justo volutpat; vel sed turpis?...</i>
-               </p>
-               <p>
-                  John Doe
-               </p>
-         
-         </div>
+{% extends 'base.html' %}
+
+{% block title %}RaiseMFunds - Home{% endblock %}
+
+{% block content %}
+<div class="remove">
+   <div class="liberty">
+      <div class="libertytext">
+         <h1>RaiseMFunds</h1>
+         <p>Our mission is to help immigrants achieve the American Dream!</p>
+         <a href="#" class="bigbutton">READ MORE</a>
       </div>
-      <div class = "Susan">
-      <form>
-         <label for="fname">First name:</label><br>
-         <input type="text" id="fname" name="fname"><br>
-         <label for="lname">Last name:</label><br>
-         <input type="text" id="lname" name="lname">
-         
-       </form>
-      </div>
-   </body>
-</html>
+   </div>
+   <div class="mainbody">
+      <h2>Some Stories</h2>
+      <p>
+         <i>Jed is an immigrant from China. He came to the United States in 2022 and is looking forward to building a life here. He was finally reunited with his parents and sisters this summer.</i>
+      </p>
+      <p>Jed L</p>
+      <p>
+         <i>Lorem ipsum odor amet, consectetuer adipiscing elit. Tincidunt elementum bibendum ultricies facilisis nisi platea varius per? Magna ex justo volutpat; vel sed turpis?...</i>
+      </p>
+      <p>John Doe</p>
+   </div>
+</div>
+<div class="Susan">
+   <form>
+      <label for="fname">First name:</label><br>
+      <input class="Susantwo" type="text" id="fname" name="fname"><br>
+      <label for="lname">Last name:</label><br>
+      <input class="Susantwo" type="text" id="lname" name="lname">
+   </form>
+</div>
+{% endblock %}

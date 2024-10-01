@@ -5,13 +5,14 @@
 </head>
 
 <body>
-    <div>
+    <div id="whole-login">
+        <h1  id="Dude">
+            Login
+        </h1>
         <form id="BOBBY">
 
 
-            <h1  id="Dude">
-                Login
-            </h1>
+           
             <div class="Susan-Wojcicki">
                 <label for="email">
                     email
@@ -27,9 +28,11 @@
         <button type="submit" id="submit-button">
             Login
         </button>
+        <p id="toggle-text">Don't have an account? <a href="#" id="toggleLink">Sign up</a></p>
         <div id="debug">
         </div>
         </form>
     </div>
+    <script src="{{ url_for('static', filename='js/login.js') }}"></script>
 
 </body>
