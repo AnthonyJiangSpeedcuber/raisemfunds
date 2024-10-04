@@ -3,6 +3,7 @@
 {% block title %}RaiseMFunds - Home{% endblock %}
 
 {% block content %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/index.css') }}">
 <div class="remove">
    <div class="liberty">
       <div class="libertytext">
@@ -25,8 +26,8 @@
 </div>
 
 <div class="newsletter-container">
-   <h3>Subscribe to our Newsletter</h3>
    <form class="newsletter-form">
+      <h3>Subscribe to our Newsletter</h3>
       <label for="email">Stay Updated:</label><br>
       <input class="input-email" type="email" id="email" placeholder="Enter your email"><br>
       <button type="submit" class="submit-button">Subscribe</button>

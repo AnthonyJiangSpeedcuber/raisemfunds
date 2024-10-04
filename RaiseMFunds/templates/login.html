@@ -4,33 +4,20 @@
 
 {% block content %}
 <div id="whole-login">
-    <h2  id="Dude">
-        Login
-    </h2>
-    <form id="BOBBY">
-
-
-       
-        <div class="Susan-Wojcicki">
-            <label for="email">
-                email
-            </label>
+    <h2 id="headers">Login</h2>
+    <form id="login-form">
+        <div class="email">
+            <label for="email">email</label>
             <input type="email" id="email" name="email" required>
         </div>
-        <div class="Susan-Wojcicki">
-            <label for="password">
-                password
-            </label>
-            <input type="password" id="passsord" name="password" required>
+        <div class="password">
+            <label for="password">password</label>
+            <input type="password" id="password" name="password" required> <!-- Changed from 'passsord' to 'password' -->
         </div>
-    <button type="submit" id="submit-button">
-        Login
-    </button>
-    <p id="toggle-text">Don't have an account? <a href="#" id="toggleLink">Sign up</a></p>
-    <div id="debug">
-    </div>
+        <button type="submit" id="submit-button">Login</button>
+        <p id="toggle-text">Don't have an account? <a href="#" id="toggleLink">Sign up</a></p>
+        <div id="debug"></div>
     </form>
 </div>
 <script src="{{ url_for('static', filename='js/login.js') }}"></script>
-
 {% endblock %}
