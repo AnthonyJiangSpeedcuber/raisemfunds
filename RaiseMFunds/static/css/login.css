@@ -1,4 +1,10 @@
-.whole-login {
-    background-image:url("/static/imgs/CACImages.webp");
+j.whole-login {
+    background-image: url("/static/imgs/CACImages.webp");
+    background-position: center;
+    background-size: cover;
+    height: 100vh;
+    text-align: center;
+    position: relative;
+
 }
 

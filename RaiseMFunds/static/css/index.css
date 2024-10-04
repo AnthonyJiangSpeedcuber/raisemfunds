@@ -66,7 +66,7 @@ h1 {
 .newsletter-container {
     padding: 5% 0;
     background: url("/static/imgs/MovingFlag.webp") no-repeat center center fixed;
-    background-position: center -220; 
+    background-position: center -70px; 
     background-size: cover;
 }
 
