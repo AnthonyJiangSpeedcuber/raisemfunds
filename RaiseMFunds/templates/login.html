@@ -4,20 +4,19 @@
 
 {% block content %}
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/login.css') }}">
-<div id="whole-login" class="whole-login">
-    <h2 id="headers">Login</h2>
+<div class="whole-login">
     <form id="login-form">
+        <h2>Login</h2>
         <div class="email">
-            <label for="email">email</label>
+            <label for="email">Email</label>
             <input type="email" id="email" name="email" required>
         </div>
         <div class="password">
-            <label for="password">password</label>
-            <input type="password" id="password" name="password" required> <!-- Changed from 'passsord' to 'password' -->
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required>
         </div>
-        <button type="submit" id="submit-button">Login</button>
+        <button type="submit">Login</button>
         <p id="toggle-text">Don't have an account? <a href="#" id="toggleLink">Sign up</a></p>
-        <div id="debug"></div>
     </form>
 </div>
 <script src="{{ url_for('static', filename='js/login.js') }}"></script>
