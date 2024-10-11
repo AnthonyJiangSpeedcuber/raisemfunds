@@ -68,4 +68,8 @@ def check_login():
 
 if __name__ == '__main__':
     app.run()
+<<<<<<< HEAD
     
+=======
+    
+>>>>>>> origin/main
