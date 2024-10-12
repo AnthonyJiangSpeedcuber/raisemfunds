@@ -3,6 +3,25 @@ import sqlite3 as s3
 
 app = Flask('app')
 
+conn = s3.connect("main.db")
+cursor=conn.cursor()
+cursor.execute("""
+CREATE TABLE IF NOT EXISTS users(
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  username TEXT NOT NULL UNIQUE,
+  password TEXT NOT NULL
+)
+""")
+cursor.execute("""
+CREATE TABLE IF NOT EXISTS posts(
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  name TEXT NOT NULL,
+  place_of_origin TEXT NOT NULL,
+  story TEXT NOT NULL,
+  amount_raised REAL NOT NULL
+)
+""")
+
 def add_user(username, password):
     try:
         conn = s3.connect("main.db")
@@ -66,10 +85,20 @@ def check_login():
     else:
         return jsonify({"error": "Email already exists."}), 400
 
+@app.route('/checkLogin',methods=['POST'])
+def check_Login():
+    data = request.get_json()
+    user=data.get('email')
+    pwd = data.get("password")
+    if login_user(user, pwd):
+        response=make_response(redirect("/"))
+        response.set_cookie("email",user)
+        return response
+    else:
+        return jsonify({"error": "Parameters not met"}), 401
+#@app.route('search')
+
+
+
 if __name__ == '__main__':
     app.run()
-<<<<<<< HEAD
-    
-=======
-    
->>>>>>> origin/main
