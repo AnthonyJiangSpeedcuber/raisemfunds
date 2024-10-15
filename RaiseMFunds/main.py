@@ -1,10 +1,11 @@
-from flask import Flask, render_template, jsonify, request
+from flask import Flask, render_template, jsonify, request, make_response, redirect
 import sqlite3 as s3
 
 app = Flask('app')
 
-conn = s3.connect("main.db")
-cursor=conn.cursor()
+conn = s3.connect("main.db", check_same_thread=False)
+cursor = conn.cursor()
+
 cursor.execute("""
 CREATE TABLE IF NOT EXISTS users(
   id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -67,6 +68,25 @@ def login_user(username, password):
         print("Error: Username not found")
         return False
 
+def search_post(query, page, per_page):
+    offset = (page - 1) * per_page
+    conn = s3.connect("main.db")
+    cursor = conn.cursor()
+    cursor.execute('''
+                    SELECT name, place_of_origin, story, amount_raised FROM posts
+                    WHERE name LIKE ? OR story LIKE ? OR place_of_origin LIKE ?
+                    ORDER BY id DESC
+                    LIMIT ? OFFSET ?
+                   ''', (f"%{query}%", f"%{query}%", f"%{query}%", per_page, offset))
+    results = cursor.fetchall()
+    cursor.execute('''
+                    SELECT COUNT(*) FROM posts 
+                    WHERE name LIKE ? OR story LIKE ? OR place_of_origin LIKE ?
+                   ''', (f"%{query}%", f"%{query}%", f"%{query}%"))
+    total_results = cursor.fetchone()[0]
+    conn.close()
+    return results, total_results
+
 @app.route('/')
 def home():
     return render_template('index.html')
@@ -76,7 +96,7 @@ def login():
     return render_template('login.html')
 
 @app.route('/registerUser', methods=["POST"])
-def check_login():
+def register_user():
     data = request.get_json()
     user = data.get('email')
     pwd = data.get('password')
@@ -85,20 +105,21 @@ def check_login():
     else:
         return jsonify({"error": "Email already exists."}), 400
 
-@app.route('/checkLogin',methods=['POST'])
-def check_Login():
+@app.route('/checkLogin', methods=['POST'])
+def check_login():
     data = request.get_json()
-    user=data.get('email')
+    user = data.get('email')
     pwd = data.get("password")
     if login_user(user, pwd):
-        response=make_response(redirect("/"))
-        response.set_cookie("email",user)
+        response = make_response(redirect("/explore"))
+        response.set_cookie("email", user)
         return response
     else:
         return jsonify({"error": "Parameters not met"}), 401
-#@app.route('search')
 
-
+@app.route('/explore')
+def explore():
+    return render_template('explore.html')
 
 if __name__ == '__main__':
     app.run()

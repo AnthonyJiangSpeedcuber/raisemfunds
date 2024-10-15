@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}RaiseMFunds - Explore{% endblock %}
+
+{% block content %}
+    <h1>Search</h1>
+    <form action="/search" method="GET">
+        <label for="searchQuery">Explore:</label>
+        <div class="search-container">
+            <input type="text" id="searchQuery" name="query" required>
+            <input type="submit" value="Search">
+        </div>
+    </form>
+    <div id="filling" class="filling">
+    </div>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/search.css') }}">
+{% endblock %}

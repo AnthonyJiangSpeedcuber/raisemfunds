@@ -57,9 +57,6 @@ h1 {
     padding-right: 20%;
     padding-bottom: 25%;
 }
-.liberals {
-    float:left;
-}
 .remove {
     display: flex;
     flex-direction: column;
