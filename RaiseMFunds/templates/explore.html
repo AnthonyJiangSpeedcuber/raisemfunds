@@ -3,15 +3,51 @@
 {% block title %}RaiseMFunds - Explore{% endblock %}
 
 {% block content %}
-    <h1>Search</h1>
-    <form action="/search" method="GET">
-        <label for="searchQuery">Explore:</label>
-        <div class="search-container">
-            <input type="text" id="searchQuery" name="query" required>
-            <input type="submit" value="Search">
-        </div>
-    </form>
-    <div id="filling" class="filling">
+<!-- Add Google Material Icons stylesheet -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/search.css') }}">
+<h1 class="page-title">Search</h1>
+<form action="/explore" method="GET" class="search-form">
+    <div class="search-container">
+        <input type="text" id="searchQuery" name="query" placeholder="Search a name, story, or place of origin" required>
+        <button type="submit" class="search-button">
+            <span class="material-icons">search</span>
+        </button>
     </div>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/search.css') }}">
+</form>
+<div id="filling" class="filling">
+    {% if query %}
+        <h2>Results for "{{ query }}":</h2>
+    {% else %}
+        <h2>Latest Stories</h2>
+    {% endif %}
+    {% if results %}
+        <ul class = "story_list">
+            {% for result in results %}
+            <li class="story-item">
+                <h3>{{ result[0] }} from {{result[1]}}<h3>
+                <p>{{ result[2] }}</p>
+                <p><strong>Amount Raised:</strong> ${{ result[3] }}</p>
+            </li>
+            {% endfor %}
+    {% else %}
+        <p>No results found.</p>
+    {% endif %}
+</div>
+
+<div class="pagination">
+    {% if pg > 1 %}
+        <a href="/explore?query={{ query }}&page={{ pg - 1 }}" class="pagination-link">
+            <span class="material-icons">chevron_left</span> Previous
+        </a>
+    {% endif %}
+
+    {% if pg < total_pages %}
+        <a href="/explore?query={{ query }}&page={{ pg + 1 }}" class="pagination-link">
+            Next <span class="material-icons">chevron_right</span>
+        </a>
+    {% endif %}
+</div>
+
 {% endblock %}

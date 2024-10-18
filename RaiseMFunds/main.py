@@ -87,6 +87,27 @@ def search_post(query, page, per_page):
     conn.close()
     return results, total_results
 
+
+def get_latest_posts(page, per_page):
+    offset = (page - 1) * per_page
+    conn = s3.connect("main.db")
+    cursor = conn.cursor()
+    cursor.execute('''
+    SELECT name, place_of_origin, story, amount_raised FROM posts
+    ORDER BY id DESC
+    LIMIT ? OFFSET ?
+    ''', (per_page, offset))
+    results = cursor.fetchall()
+
+    cursor.execute('''
+    SELECT COUNT(*) FROM posts
+    ''')
+    total_results = cursor.fetchone()[0]
+    
+    conn.close()
+    return results, total_results
+
+
 @app.route('/')
 def home():
     return render_template('index.html')
@@ -117,9 +138,18 @@ def check_login():
     else:
         return jsonify({"error": "Parameters not met"}), 401
 
-@app.route('/explore')
+@app.route('/explore', methods=["GET"])
 def explore():
-    return render_template('explore.html')
+    data = request.args.get("query","")
+    pg = int(request.args.get("page", 1))
+    sppg = 2
+    if data:
+        results, total_results = search_post(data, pg, sppg)
+    else:
+        results, total_results = get_latest_posts(pg, sppg)
+
+    total_pages = (total_results+sppg-1)//sppg
+    return render_template('explore.html',query=data,results=results,pg=pg,total_pages=total_pages)
 
 if __name__ == '__main__':
     app.run()
