@@ -94,3 +94,9 @@ input[type="text"]:focus {
         padding: 8px;
     }
 }
+.search-head {
+    text-align: center;
+}
+.pagination {
+    text-align: center;
+}

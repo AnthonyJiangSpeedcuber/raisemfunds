@@ -18,9 +18,9 @@
 </form>
 <div id="filling" class="filling">
     {% if query %}
-        <h2>Results for "{{ query }}":</h2>
+        <h2 class="search-head">Results for "{{ query }}":</h2>
     {% else %}
-        <h2>Latest Stories</h2>
+        <h2 class="search-head">Latest Stories</h2>
     {% endif %}
     {% if results %}
         <ul class = "story_list">

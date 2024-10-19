@@ -1,7 +1,9 @@
 
 
 
-
+.container{
+    min-height: 90%;
+}
 
 /* Navigation bar styles */
 .navbar {
@@ -39,4 +41,21 @@
 
 .navbar-menu a:hover {
     color: #007bff;
+}
+footer {
+    bottom:0px;
+    background-color: #152283;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #48508d;
+    color:#ffffff;
+}
+footer u{
+    margin-left: 20px;
+    margin-right: 20px;
+}
+.filling{
+    margin-top: 60px;
 }
