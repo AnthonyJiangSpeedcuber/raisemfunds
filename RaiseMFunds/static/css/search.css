@@ -97,9 +97,53 @@ input[type="text"]:focus {
 .search-head {
     text-align: center;
 }
-.pagination {
-    text-align: center;
+.pagination-link {
+    display: inline-block; /* Makes it behave like a button */
+    padding: 10px 15px; /* Padding for a button-like appearance */
+    margin: 0 10px; /* Space between buttons */
+    background-color: #007bff; /* Button background color */
+    color: white; /* Text color */
+    border-radius: 5px; /* Rounded corners */
+    text-decoration: none; /* Remove underline */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transition */
 }
+
+.pagination-link:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+    transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+.pagination-link:focus {
+    outline: none; /* Remove default outline */
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5); /* Outline for accessibility */
+}
+.pagination {
+    display: flex; /* Use flexbox for alignment */
+    justify-content: center; /* Center items horizontally */
+    margin: 20px 0; /* Space above and below the pagination */
+}
+
+.pagination-link {
+    display: inline-block; /* Makes it behave like a button */
+    padding: 10px 15px; /* Padding for a button-like appearance */
+    margin: 0 10px; /* Space between buttons */
+    background-color: #007bff; /* Button background color */
+    color: white; /* Text color */
+    border-radius: 5px; /* Rounded corners */
+    text-decoration: none; /* Remove underline */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transition */
+}
+
+.pagination-link:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+    transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+.pagination-link:focus {
+    outline: none; /* Remove default outline */
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5); /* Outline for accessibility */
+}
+
 .story_list {
     list-style: none;
     padding: 0;
