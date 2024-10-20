@@ -123,6 +123,7 @@ input[type="text"]:focus {
     margin: 20px 0; /* Space above and below the pagination */
 }
 
+
 .pagination-link {
     display: inline-block; /* Makes it behave like a button */
     padding: 10px 15px; /* Padding for a button-like appearance */
