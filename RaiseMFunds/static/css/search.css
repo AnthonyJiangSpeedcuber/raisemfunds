@@ -100,3 +100,55 @@ input[type="text"]:focus {
 .pagination {
     text-align: center;
 }
+.story_list {
+    list-style: none;
+    padding: 0;
+    margin: 20px auto;
+    max-width: 800px;
+}
+
+.story-item {
+    margin-bottom: 20px;
+}
+
+.story-card {
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0; /* Light border */
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 20px; /* Increased padding for more space */
+    transition: transform 0.3s ease;
+}
+
+.story-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+}
+
+.story-title {
+    font-size: 1.5rem;
+    color: #333;
+    margin: 0;
+}
+
+.story-origin {
+    font-size: 1rem;
+    color: #6c757d;
+}
+
+.story-description {
+    margin: 10px 0;
+    color: #495057;
+}
+
+.story-amount {
+    font-weight: bold;
+    color: #28a745; /* Green color for amount raised */
+}
+
+/* Optional: Add some responsive styling */
+@media screen and (max-width: 600px) {
+    .story-card {
+        padding: 15px; /* Slightly less padding on smaller screens */
+    }
+}

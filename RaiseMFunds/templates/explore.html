@@ -23,14 +23,16 @@
         <h2 class="search-head">Latest Stories</h2>
     {% endif %}
     {% if results %}
-        <ul class = "story_list">
+        <ul class="story_list">
             {% for result in results %}
             <li class="story-item">
-                <h3>{{ result[0] }} from {{result[1]}}<h3>
+                <h3>{{ result[0] }} from {{ result[1] }}</h3>
                 <p>{{ result[2] }}</p>
                 <p><strong>Amount Raised:</strong> ${{ result[3] }}</p>
             </li>
+            <hr class="story-divider"> <!-- Page break between stories -->
             {% endfor %}
+        </ul>
     {% else %}
         <p>No results found.</p>
     {% endif %}
