@@ -94,9 +94,11 @@ input[type="text"]:focus {
         padding: 8px;
     }
 }
+
 .search-head {
     text-align: center;
 }
+
 .pagination-link {
     display: inline-block; /* Makes it behave like a button */
     padding: 10px 15px; /* Padding for a button-like appearance */
@@ -117,32 +119,11 @@ input[type="text"]:focus {
     outline: none; /* Remove default outline */
     box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5); /* Outline for accessibility */
 }
+
 .pagination {
     display: flex; /* Use flexbox for alignment */
     justify-content: center; /* Center items horizontally */
     margin: 20px 0; /* Space above and below the pagination */
-}
-
-
-.pagination-link {
-    display: inline-block; /* Makes it behave like a button */
-    padding: 10px 15px; /* Padding for a button-like appearance */
-    margin: 0 10px; /* Space between buttons */
-    background-color: #007bff; /* Button background color */
-    color: white; /* Text color */
-    border-radius: 5px; /* Rounded corners */
-    text-decoration: none; /* Remove underline */
-    transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transition */
-}
-
-.pagination-link:hover {
-    background-color: #0056b3; /* Darker shade on hover */
-    transform: scale(1.05); /* Slightly enlarge on hover */
-}
-
-.pagination-link:focus {
-    outline: none; /* Remove default outline */
-    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5); /* Outline for accessibility */
 }
 
 .story_list {
@@ -196,4 +177,55 @@ input[type="text"]:focus {
     .story-card {
         padding: 15px; /* Slightly less padding on smaller screens */
     }
+}
+
+/* Modified styles for the donation form */
+.donate-form {
+    margin-top: 10px;
+}
+
+.donate-form label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* Make the input and button appear on the same line */
+.donate-form input[type="number"], .donate-form button {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.donate-form input[type="number"] {
+    width: 70%; /* Adjust the width as needed */
+    padding: 8px;
+    margin-bottom: 10px;
+    margin-right: 10px; /* Space between input and button */
+    box-sizing: border-box;
+}
+
+.donate-form button {
+    background-color: #152283;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.donate-form button:hover {
+    background-color: #263185;
+}
+.thankyou-message {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #28a745; /* Green background */
+    color: white;
+    padding: 15px 25px;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-size: 1rem;
+    z-index: 1000; /* Ensure it appears above other elements */
+    opacity: 1; /* Start fully visible */
+    transition: opacity 1s ease-out;
 }

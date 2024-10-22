@@ -1,4 +1,4 @@
-from flask import Flask, render_template, jsonify, request, make_response, redirect
+from flask import Flask, render_template, jsonify, request, make_response, redirect, url_for
 import sqlite3 as s3
 
 app = Flask('app')
@@ -73,27 +73,26 @@ def search_post(query, page, per_page):
     conn = s3.connect("main.db")
     cursor = conn.cursor()
     cursor.execute('''
-                    SELECT name, place_of_origin, story, amount_raised FROM posts
-                    WHERE name LIKE ? OR story LIKE ? OR place_of_origin LIKE ?
-                    ORDER BY id DESC
-                    LIMIT ? OFFSET ?
-                   ''', (f"%{query}%", f"%{query}%", f"%{query}%", per_page, offset))
+        SELECT id, name, place_of_origin, story, amount_raised FROM posts
+        WHERE name LIKE ? OR story LIKE ? OR place_of_origin LIKE ?
+        ORDER BY id DESC
+        LIMIT ? OFFSET ?
+       ''', (f"%{query}%", f"%{query}%", f"%{query}%", per_page, offset))
     results = cursor.fetchall()
     cursor.execute('''
-                    SELECT COUNT(*) FROM posts 
-                    WHERE name LIKE ? OR story LIKE ? OR place_of_origin LIKE ?
-                   ''', (f"%{query}%", f"%{query}%", f"%{query}%"))
+        SELECT COUNT(*) FROM posts 
+        WHERE name LIKE ? OR story LIKE ? OR place_of_origin LIKE ?
+       ''', (f"%{query}%", f"%{query}%", f"%{query}%"))
     total_results = cursor.fetchone()[0]
     conn.close()
     return results, total_results
-
 
 def get_latest_posts(page, per_page):
     offset = (page - 1) * per_page
     conn = s3.connect("main.db")
     cursor = conn.cursor()
     cursor.execute('''
-    SELECT name, place_of_origin, story, amount_raised FROM posts
+    SELECT id, name, place_of_origin, story, amount_raised FROM posts
     ORDER BY id DESC
     LIMIT ? OFFSET ?
     ''', (per_page, offset))
@@ -106,7 +105,6 @@ def get_latest_posts(page, per_page):
     
     conn.close()
     return results, total_results
-
 
 @app.route('/')
 def home():
@@ -148,8 +146,48 @@ def explore():
     else:
         results, total_results = get_latest_posts(pg, sppg)
 
-    total_pages = (total_results+sppg-1)//sppg
-    return render_template('explore.html',query=data,results=results,pg=pg,total_pages=total_pages)
+    total_pages = (total_results + sppg - 1) // sppg
+    return render_template('explore.html', query=data, results=results, pg=pg, total_pages=total_pages)
+
+@app.route('/donate', methods=['POST'])
+def donate():
+    post_id = request.form.get('post_id')
+    donation_amount = request.form.get('donation_amount')
+
+    # Validate inputs
+    if not post_id or not donation_amount:
+        return jsonify({"error": "Invalid input"}), 400
+
+    try:
+        donation_amount = float(donation_amount)
+        if donation_amount <= 0:
+            return jsonify({"error": "Donation amount must be positive"}), 400
+    except ValueError:
+        return jsonify({"error": "Invalid donation amount"}), 400
+
+    # Update the amount_raised in the database
+    conn = s3.connect("main.db")
+    cursor = conn.cursor()
+
+    cursor.execute('SELECT amount_raised FROM posts WHERE id = ?', (post_id,))
+    result = cursor.fetchone()
+    if not result:
+        conn.close()
+        return jsonify({"error": "Post not found"}), 404
+
+    # Safely update the amount_raised
+    cursor.execute('''
+        UPDATE posts
+        SET amount_raised = amount_raised + ?
+        WHERE id = ?
+    ''', (donation_amount, post_id))
+    conn.commit()
+    conn.close()
+
+    # Create a response object to set a cookie
+    response = make_response(redirect(request.referrer or url_for('explore')))
+    response.set_cookie('thankyou', '1', max_age=5)  # Cookie expires in 5 seconds
+    return response
 
 if __name__ == '__main__':
     app.run()

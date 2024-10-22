@@ -16,6 +16,14 @@
         </button>
     </div>
 </form>
+
+<!-- Thank You Message -->
+{% if request.cookies.get('thankyou') %}
+<div id="thankyou-message" class="thankyou-message">
+    Thank you for your donation!
+</div>
+{% endif %}
+
 <div id="filling" class="filling">
     {% if query %}
         <h2 class="search-head">Results for "{{ query }}":</h2>
@@ -26,9 +34,18 @@
         <ul class="story_list">
             {% for result in results %}
             <li class="story-item">
-                <h3>{{ result[0] }} from {{ result[1] }}</h3>
-                <p>{{ result[2] }}</p>
-                <p><strong>Amount Raised:</strong> ${{ result[3] }}</p>
+                <h3>{{ result[1] }} from {{ result[2] }}</h3>
+                <p>{{ result[3] }}</p>
+                <p><strong>Amount Raised:</strong> ${{ result[4] }}</p>
+                <!-- Donate form -->
+                <form action="/donate" method="POST" class="donate-form">
+                    <input type="hidden" name="post_id" value="{{ result[0] }}">
+                    <label for="donation_amount_{{ result[0] }}" class="donate-label">Donate Amount:</label>
+                    <div class="donate-input-button">
+                        <input type="number" id="donation_amount_{{ result[0] }}" name="donation_amount" min="0.01" step="0.01" required>
+                        <button type="submit">Donate</button>
+                    </div>
+                </form>
             </li>
             <hr class="story-divider"> <!-- Page break between stories -->
             {% endfor %}
@@ -52,6 +69,20 @@
     {% endif %}
 </div>
 
-
+<!-- JavaScript to fade out the thank you message -->
+<script>
+    window.addEventListener('DOMContentLoaded', (event) => {
+        var thankYouMessage = document.getElementById('thankyou-message');
+        if (thankYouMessage) {
+            setTimeout(function() {
+                thankYouMessage.style.transition = 'opacity 1s ease-out';
+                thankYouMessage.style.opacity = '0';
+                setTimeout(function() {
+                    thankYouMessage.style.display = 'none';
+                }, 1000);
+            }, 2000);
+        }
+    });
+</script>
 
 {% endblock %}
